@@ -49,7 +49,7 @@ function searchCoordinateToAddress(latlng) {
 // result by latlng coordinate
 function searchAddressToCoordinate(address) {
 
-    geocoder({
+    naver.maps.Service.geocode({
         address: address
     }, function(status, response) {
         if (status === naver.maps.Service.Status.ERROR) {
