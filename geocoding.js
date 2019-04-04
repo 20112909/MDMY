@@ -3,29 +3,7 @@ var map = new naver.maps.Map("map", {
     zoom: 10,
     mapTypeControl: true
 });
-let address = document.getElementById("address").value;
-let geocoder = new naver.maps.Service.geocode({
-    address: address
-}, function(status, response) {
-    if (status === naver.maps.Service.Status.ERROR) {
-        return alert('Something Wrong!');
-    }
 
-    var item = response.result.items[0],
-        addrType = item.isRoadAddress ? '[도로명 주소]' : '[지번 주소]',
-        point = new naver.maps.Point(item.point.x, item.point.y);
-
-    infoWindow.setContent([
-            '<div style="padding:10px;min-width:200px;line-height:150%;">',
-            '<h4 style="margin-top:5px;">검색 주소 : '+ response.result.userquery +'</h4><br />',
-            addrType +' '+ item.address +'<br />',
-            '</div>'
-        ].join('\n'));
-
-
-    map.setCenter(point);
-    infoWindow.open(map, point);
-});
 
 var infoWindow = new naver.maps.InfoWindow({
     anchorSkew: true
